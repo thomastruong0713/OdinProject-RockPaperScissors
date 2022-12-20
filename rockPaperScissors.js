@@ -43,10 +43,10 @@ var playerWins = 0;
 
 function game(){ // Create function for full game of 5 rounds
     for(let i = 0; i < 5; i++){ // Create for loop that loops 5 times
-        let playerSelection = prompt("Please choose Rock, Paper, or Scissors");
-        let computerSelection = getComputerChoice();
-        let result = playRound(playerSelection, computerSelection);
-        if(result == "You Win! Paper beats Rock" || result == "You Win! Rock beats Scissors" || result == "You Win! Scissors beats Paper"){
+        let playerSelection = prompt("Please choose Rock, Paper, or Scissors"); // Get player input and store into variable playerSelection
+        let computerSelection = getComputerChoice(); // Get computer input and store it into computerSelection
+        let result = playRound(playerSelection, computerSelection); // Store result of 1 round into variable to use in if elseif block
+        if(result == "You Win! Paper beats Rock" || result == "You Win! Rock beats Scissors" || result == "You Win! Scissors beats Paper"){ // if elseif block to see if there was a win, loss, or draw and tally the points accordingly
             playerWins = playerWins + 1
             console.log(result);
             console.log("Current score: " + playerWins + "-" + computerWins);
@@ -68,7 +68,8 @@ function game(){ // Create function for full game of 5 rounds
 
 game();
 
-console.log("The final score of your game is: " + playerWins + "-" + computerWins)
+console.log("The final score of your game is: " + playerWins + "-" + computerWins) // Message to user for final score and who won
+
 if(playerWins > computerWins){
     console.log("You Win!");
 }
