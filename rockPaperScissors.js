@@ -1,74 +1,95 @@
-function getComputerChoice(){ // Create function to let computer get a random choice
-    const compChoices = ["Rock", "Paper", "Scissors"]; //  create array for computer to choose from
-    let randomChoice = Math.floor(Math.random()*compChoices.length); // create random choice
-    let computerChoice = compChoices[randomChoice]; // apply random choice to our existing array
-    return computerChoice; //  return our answer which will be used later
+// Create function to let computer get a random choice
+function getComputerChoice(){ 
+    const compChoices = ["Rock", "Paper", "Scissors"];
+    let randomChoice = Math.floor(Math.random()*compChoices.length); 
+    let computerChoice = compChoices[randomChoice]; 
+    return computerChoice; 
 }
 
-function playRound(playerSelection, computerSelection){ // Create function to play a single round
-    if(playerSelection.toLowerCase() == 'rock' && computerSelection == 'Rock'){ // Create if else if statements to decide outcomes 
-        return "Draw! Rock ties with Rock";
+// Create function to play a single round of Rock Paper Scissors
+function playRound(playerSelection, computerSelection){ 
+    if(playerSelection.toLowerCase() == 'rock' && 
+        computerSelection == 'Rock'){ 
+            return "Draw! Rock ties with Rock";
     }
-    else if(playerSelection.toLowerCase() == 'rock' && computerSelection == 'Paper'){
-        return "You Lose! Paper beats Rock";
+    else if(playerSelection.toLowerCase() == 'rock' && 
+            computerSelection == 'Paper'){
+                return "You Lose! Paper beats Rock";
     }
-    else if(playerSelection.toLowerCase() == 'rock' && computerSelection == 'Scissors'){
-        return "You Win! Rock beats Scissors";
+    else if(playerSelection.toLowerCase() == 'rock' && 
+            computerSelection == 'Scissors'){
+                return "You Win! Rock beats Scissors";
     }
-    else if(playerSelection.toLowerCase() == 'paper' && computerSelection == 'Rock'){
-        return "You Win! Paper beats Rock";
+    else if(playerSelection.toLowerCase() == 'paper' && 
+            computerSelection == 'Rock'){
+                return "You Win! Paper beats Rock";
     }
-    else if(playerSelection.toLowerCase() == 'paper' && computerSelection == 'Paper'){
-        return "Draw! Paper ties with Paper";
+    else if(playerSelection.toLowerCase() == 'paper' && 
+            computerSelection == 'Paper'){
+                return "Draw! Paper ties with Paper";
     }
-    else if(playerSelection.toLowerCase() == 'paper' && computerSelection == 'Scissors'){
-        return "You Lose! Scissors beats Paper";
+    else if(playerSelection.toLowerCase() == 'paper' && 
+            computerSelection == 'Scissors'){
+                return "You Lose! Scissors beats Paper";
     }
-    else if(playerSelection.toLowerCase() == 'scissors' && computerSelection == 'Rock'){
-        return "You Lose! Rock beats Scissors";
+    else if(playerSelection.toLowerCase() == 'scissors' && 
+            computerSelection == 'Rock'){
+                return "You Lose! Rock beats Scissors";
     }
-    else if(playerSelection.toLowerCase() == 'scissors' && computerSelection == 'Paper'){
-        return "You Win! Scissors beats Paper";
+    else if(playerSelection.toLowerCase() == 'scissors' && 
+            computerSelection == 'Paper'){
+                return "You Win! Scissors beats Paper";
     }
-    else if(playerSelection.toLowerCase() == 'scissors' && computerSelection == 'Scissors'){
-        return "Draw! Scissors ties with Scissors";
+    else if(playerSelection.toLowerCase() == 'scissors' && 
+            computerSelection == 'Scissors'){
+                return "Draw! Scissors ties with Scissors";
     }
     else{
         return "Incorrect selection";
     }
 }
 
-var computerWins = 0; // Set variables to keep score of the game
+// Set variables to keep score of the Rock Paper Scissors game
+var computerWins = 0; 
 var playerWins = 0;
 
-function game(){ // Create function for full game of 5 rounds
-    for(let i = 0; i < 5; i++){ // Create for loop that loops 5 times
-        let playerSelection = prompt("Please choose Rock, Paper, or Scissors"); // Get player input and store into variable playerSelection
-        let computerSelection = getComputerChoice(); // Get computer input and store it into computerSelection
-        let result = playRound(playerSelection, computerSelection); // Store result of 1 round into variable to use in if elseif block
-        if(result == "You Win! Paper beats Rock" || result == "You Win! Rock beats Scissors" || result == "You Win! Scissors beats Paper"){ // if elseif block to see if there was a win, loss, or draw and tally the points accordingly
-            playerWins = playerWins + 1
-            console.log(result);
-            console.log("Current score: " + playerWins + "-" + computerWins);
-        }
-        else if(result == "You Lose! Scissors beats Paper" || result == "You Lose! Rock beats Scissors" || result == "You Lose! Paper beats Rock"){
-            computerWins = computerWins + 1
-            console.log(result);
-            console.log("Current score: " + playerWins + "-" + computerWins);
-        }
-        else if(result == "Draw! Paper ties with Paper" || result == "Draw! Scissors ties with Scissors" || result == "Draw! Rock ties with Rock"){
-            console.log(result);
-            console.log("Current score: " + playerWins + "-" + computerWins);
-        }
+// Create a function that plays 5 rounds of Rock Paper Scissors, Updating score after every round
+function game(){ 
+    for(let i = 0; i < 5; i++){ 
+        let playerSelection = prompt("Please choose Rock, Paper, or Scissors"); 
+        let computerSelection = getComputerChoice(); 
+        let result = playRound(playerSelection, computerSelection); 
+        if(result == "You Win! Paper beats Rock" || 
+           result == "You Win! Rock beats Scissors" || 
+           result == "You Win! Scissors beats Paper"){ 
+                playerWins = playerWins + 1
+                console.log(result);
+                console.log("Current score: " + playerWins + "-" + computerWins);
+            }
+        else if(result == "You Lose! Scissors beats Paper" || 
+                result == "You Lose! Rock beats Scissors" || 
+                result == "You Lose! Paper beats Rock"){
+                    computerWins = computerWins + 1
+                    console.log(result);
+                    console.log("Current score: " + playerWins + "-" + computerWins);
+            }
+        else if(result == "Draw! Paper ties with Paper" || 
+                result == "Draw! Scissors ties with Scissors" || 
+                result == "Draw! Rock ties with Rock"){
+                    console.log(result);
+                    console.log("Current score: " + playerWins + "-" + computerWins);
+            }
         else{
             console.log(result);
         }
     }
 }
 
+// Call function to play a full game of 5 rounds
 game();
 
-console.log("The final score of your game is: " + playerWins + "-" + computerWins) // Message to user for final score and who won
+// Message to user for final score and winner of the game
+console.log("The final score of your game is: " + playerWins + "-" + computerWins) 
 
 if(playerWins > computerWins){
     console.log("You Win!");
